@@ -5,4 +5,5 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: user.username, height: options[:size],
         width: options[:size], class: "rounded mx-auto d-block")
   end
+
 end
