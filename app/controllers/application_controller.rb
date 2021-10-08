@@ -9,11 +9,18 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
-  
+
   def require_user
     if !logged_in?
       flash[:alert] = "You must be logged in to perform action"
       redirect_to login_path
+    end
+  end
+ 
+  def require_admin
+    unless logged_in? && current_user.admin?
+      flash[:alert] = "Only admins can perform this action"
+      redirect_to categories_path
     end
   end
 end
